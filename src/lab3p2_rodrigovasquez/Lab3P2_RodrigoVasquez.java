@@ -170,7 +170,35 @@ public class Lab3P2_RodrigoVasquez {
                     }
                     break;
                 case 4:
-                    
+                    int opcionCompra;
+                    do {
+                        System.out.println("""
+                                       [1] Compra
+                                       [2] Venta
+                                       [3] Salir
+                                       """);
+                        System.out.print("Ingrese que desea ejecutar: ");
+                        opcionCompra = scMain.nextInt();
+                        int numLista = 1;
+                        if (opcionCompra == 1) {
+                            for (Concesionaria concesionaria : concesionarias) {
+                                System.out.println("#" + numLista + ": " + concesionaria);
+                                numLista++;
+                            }
+                            numLista = 1;
+                            System.out.print("Ingrese a que concesionaria quiere comprarle: ");
+                            int conceCompra = scMain.nextInt();
+                            if (conceCompra - 1 < 0 || conceCompra - 1 > concesionarias.size()) {
+                                
+                            }
+                        } else if (opcionCompra == 2) {
+
+                        } else if (opcionCompra == 3) {
+                            System.out.println("Saliendo...");
+                        } else {
+                            System.out.println("Opcion Invalida");
+                        }
+                    } while (opcionCompra != 3);
                     break;
                 case 5:
                     System.out.println("Cerrando el sistema...");
