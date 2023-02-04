@@ -65,11 +65,11 @@ public class Lab3P2_RodrigoVasquez {
                                                     System.out.println("#" + num + ": " + concesionaria);
                                                 }
                                                 System.out.println("¿A que concesionaria desea agregar el carro? ");
-                                                int opcionConce = scMain.nextInt(); 
+                                                int opcionConce = scMain.nextInt();
                                                 if (opcionConce - 1 > concesionarias.size() && opcionConce - 1 < 0) {
                                                     System.out.println("Opcion Invalida");
                                                 } else {
-                                                    ((Concesionaria)concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
+                                                    ((Concesionaria) concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
                                                 }
                                             }
                                         }
@@ -82,11 +82,11 @@ public class Lab3P2_RodrigoVasquez {
                                                     System.out.println("#" + num + ": " + concesionaria);
                                                 }
                                                 System.out.println("¿A que concesionaria desea agregar el camion? ");
-                                                int opcionConce = scMain.nextInt(); 
+                                                int opcionConce = scMain.nextInt();
                                                 if (opcionConce - 1 > concesionarias.size() && opcionConce - 1 < 0) {
                                                     System.out.println("Opcion Invalida");
                                                 } else {
-                                                    ((Concesionaria)concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
+                                                    ((Concesionaria) concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
                                                 }
                                             }
                                         }
@@ -99,11 +99,11 @@ public class Lab3P2_RodrigoVasquez {
                                                     System.out.println("#" + num + ": " + concesionaria);
                                                 }
                                                 System.out.println("¿A que concesionaria desea agregar el bus? ");
-                                                int opcionConce = scMain.nextInt(); 
+                                                int opcionConce = scMain.nextInt();
                                                 if (opcionConce - 1 > concesionarias.size() && opcionConce - 1 < 0) {
                                                     System.out.println("Opcion Invalida");
                                                 } else {
-                                                    ((Concesionaria)concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
+                                                    ((Concesionaria) concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
                                                 }
                                             }
                                         }
@@ -116,11 +116,11 @@ public class Lab3P2_RodrigoVasquez {
                                                     System.out.println("#" + num + ": " + concesionaria);
                                                 }
                                                 System.out.println("¿A que concesionaria desea agregar la moto? ");
-                                                int opcionConce = scMain.nextInt(); 
+                                                int opcionConce = scMain.nextInt();
                                                 if (opcionConce - 1 > concesionarias.size() && opcionConce - 1 < 0) {
                                                     System.out.println("Opcion Invalida");
                                                 } else {
-                                                    ((Concesionaria)concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
+                                                    ((Concesionaria) concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
                                                 }
                                             }
                                         }
@@ -133,11 +133,11 @@ public class Lab3P2_RodrigoVasquez {
                                                     System.out.println("#" + num + ": " + concesionaria);
                                                 }
                                                 System.out.println("¿A que concesionaria desea agregar la bici? ");
-                                                int opcionConce = scMain.nextInt(); 
+                                                int opcionConce = scMain.nextInt();
                                                 if (opcionConce - 1 > concesionarias.size() && opcionConce - 1 < 0) {
                                                     System.out.println("Opcion Invalida");
                                                 } else {
-                                                    ((Concesionaria)concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
+                                                    ((Concesionaria) concesionarias.get(opcionConce - 1)).getListaVenta().add(c);
                                                 }
                                             }
                                         }
@@ -146,8 +146,19 @@ public class Lab3P2_RodrigoVasquez {
                                 case 2:
                                     break;
                                 case 3:
-                                    
-                                    
+                                    int numV = 1;
+                                    for (Vehiculo vehi : vehiculos) {
+                                        System.out.println("#" + numV + ": " + vehi);
+                                        numV++;
+                                    }
+                                    System.out.print("Eliga que vehiculo desea eliminar: ");
+                                    int numElim = scMain.nextInt();
+                                    if (numElim - 1 < 0 || numElim - 1 > vehiculos.size()) {
+                                        System.out.println("Opcion Invalida");
+                                    } else {
+                                        vehiculos.remove(numV - 1);
+                                        System.out.println("Vehiculo eliminado");
+                                    }
                                     break;
                                 case 4:
                                     System.out.println("Saliendo...");
@@ -159,6 +170,7 @@ public class Lab3P2_RodrigoVasquez {
                     }
                     break;
                 case 4:
+                    
                     break;
                 case 5:
                     System.out.println("Cerrando el sistema...");
@@ -170,7 +182,7 @@ public class Lab3P2_RodrigoVasquez {
             }
         } while (opcion != 5);
     }
-    
+
     public static Concesionaria crudConce(ArrayList<Concesionaria> concesionarias) {
         Scanner scConce = new Scanner(System.in);
         int opcion;
@@ -186,7 +198,7 @@ public class Lab3P2_RodrigoVasquez {
                              """);
             System.out.println("-------------------------------------");
             System.out.print("Ingrese la accion a realizar: ");
-            opcion = scConce.nextInt(); 
+            opcion = scConce.nextInt();
             switch (opcion) {
                 case 1:
                     System.out.print("Ingrese el nombre de la concesionaria: ");
@@ -196,7 +208,7 @@ public class Lab3P2_RodrigoVasquez {
                     String dire = scConce.nextLine();
                     double saldo = (Math.random() * (100000 - 30000)) + 1;
                     System.out.println("Su saldo es de: " + saldo);
-                    concesionarias.add(new Concesionaria(name, dire, concesionarias.size()+1, saldo));
+                    concesionarias.add(new Concesionaria(name, dire, concesionarias.size() + 1, saldo));
                     System.out.println("Se ha añadido la concesionaria");
                     break;
                 case 2:
@@ -213,11 +225,11 @@ public class Lab3P2_RodrigoVasquez {
                         System.out.print("Ingrese la nueva direccion: ");
                         String newDire = scConce.nextLine();
                         newDire = scConce.nextLine();
-                        concesionarias.get(numConce-1).setDireccion(newDire);
+                        concesionarias.get(numConce - 1).setDireccion(newDire);
                         System.out.println("Se ha cambiado la dirrecion");
                     }
                     break;
-                case 3: 
+                case 3:
                     int numMElim = 1;
                     for (Concesionaria concesionaria : concesionarias) {
                         System.out.println("#" + numMElim + ": " + concesionaria);
@@ -228,21 +240,21 @@ public class Lab3P2_RodrigoVasquez {
                     if (num < 0 || num > concesionarias.size()) {
                         System.out.println("Opcion Invalida");
                     } else {
-                        concesionarias.remove(num-1);
+                        concesionarias.remove(num - 1);
                         System.out.println("Se ha eliminado concesionaria");
                     }
-                    break; 
-                case 4: 
+                    break;
+                case 4:
                     System.out.println("Saliendo...");
                     break;
-                default: 
+                default:
                     System.out.println("Opcion Invalida");
                     break;
             }
-        } while (opcion != 4); 
+        } while (opcion != 4);
         return concesionarias;
     }
-    
+
     public static ArrayList crudCliente(ArrayList<Cliente> clientes) {
         Scanner scClient = new Scanner(System.in);
         int opcion;
