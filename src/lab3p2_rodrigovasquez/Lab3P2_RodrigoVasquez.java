@@ -171,34 +171,96 @@ public class Lab3P2_RodrigoVasquez {
                     break;
                 case 4:
                     int opcionCompra;
-                    do {
-                        System.out.println("""
+                    if (concesionarias.isEmpty() && vehiculos.isEmpty() && clientes.isEmpty()) {
+                        System.out.println("No hay concesionarias, vehiculos, ni clientes");
+                    } else {
+                        do {
+                            System.out.println("""
                                        [1] Compra
                                        [2] Venta
                                        [3] Salir
                                        """);
-                        System.out.print("Ingrese que desea ejecutar: ");
-                        opcionCompra = scMain.nextInt();
-                        int numLista = 1;
-                        if (opcionCompra == 1) {
-                            for (Concesionaria concesionaria : concesionarias) {
-                                System.out.println("#" + numLista + ": " + concesionaria);
-                                numLista++;
-                            }
-                            numLista = 1;
-                            System.out.print("Ingrese a que concesionaria quiere comprarle: ");
-                            int conceCompra = scMain.nextInt();
-                            if (conceCompra - 1 < 0 || conceCompra - 1 > concesionarias.size()) {
-                                
-                            }
-                        } else if (opcionCompra == 2) {
+                            System.out.print("Ingrese que desea ejecutar: ");
+                            opcionCompra = scMain.nextInt();
+                            int numLista = 1;
+                            if (opcionCompra == 1) {
+                                for (Cliente cliente : clientes) {
+                                    System.out.println("#" + numLista + ": " + cliente);
+                                    numLista++;
+                                }
+                                numLista = 1;
+                                System.out.println("Seleccione un cliente: ");
+                                int numCliente = scMain.nextInt();
+                                if (numCliente < 0 || numCliente > clientes.size()) {
+                                    System.out.println("Opcion Invalida");
+                                } else {
+                                    for (Concesionaria concesionaria : concesionarias) {
+                                        System.out.println("#" + numLista + ": " + concesionaria);
+                                        numLista++;
+                                    }
+                                    numLista = 1;
+                                    System.out.print("Ingrese a que concesionaria quiere comprarle: ");
+                                    int conceCompra = scMain.nextInt();
+                                    if (conceCompra - 1 < 0 || conceCompra - 1 > concesionarias.size()) {
+                                        System.out.println("Opcion Invalida");
+                                    } else {
+                                        System.out.println(concesionarias.get(conceCompra - 1).getListaVenta());
+                                        System.out.print("Ingrese que vehiculo desea comprar: ");
+                                        int numCompra = scMain.nextInt();
+                                        if (numCompra < 0 || numCompra >= concesionarias.get(conceCompra - 1).getListaVenta().size()) {
+                                            System.out.println("Opcion Invalida");
+                                        } else {
+                                            int setenta = (int) ((concesionarias.get(conceCompra - 1).getListaVenta().get(numCompra - 1).getPrecio()) * 0.075);
+                                            int precio = (concesionarias.get(conceCompra - 1).getListaVenta().get(numCompra - 1).getPrecio()) + setenta;
+                                            System.out.println("Se va a pagar " + precio);
+                                            double pagoCliente = clientes.get(numCliente).getSaldo();
+                                            clientes.get(numCliente - 1).setSaldo(pagoCliente - precio);
+                                            clientes.get(numCliente - 1).getOwnedVehiculos().add(concesionarias.get(conceCompra - 1).getListaVenta().get(numCompra - 1));
+                                        }
+                                    }
+                                }
 
-                        } else if (opcionCompra == 3) {
-                            System.out.println("Saliendo...");
-                        } else {
-                            System.out.println("Opcion Invalida");
-                        }
-                    } while (opcionCompra != 3);
+                            } else if (opcionCompra == 2) {
+                                for (Cliente cliente : clientes) {
+                                    System.out.println("#" + numLista + ": " + cliente);
+                                    numLista++;
+                                }
+                                numLista = 1;
+                                System.out.println("Seleccione un cliente: ");
+                                int numCliente = scMain.nextInt();
+                                if (numCliente < 0 || numCliente > clientes.size()) {
+                                    System.out.println("Opcion Invalida");
+                                } else {
+                                    System.out.println(clientes.get(numCliente - 1).getOwnedVehiculos());
+                                    System.out.print("Ingrese el vehiculo a vender: ");
+                                    int numVenta = scMain.nextInt(); 
+                                    if (numVenta < 0 || numVenta > clientes.get(numCliente - 1).getOwnedVehiculos().size()) {
+                                        System.out.println("Opcion Invalida");
+                                    } else {
+                                        for (Concesionaria concesionaria : concesionarias) {
+                                            System.out.println("#" + numLista + ": " + concesionaria);
+                                            numLista++;
+                                        }
+                                        numLista = 1;
+                                        System.out.println("Ingrese a que concesionaria venderle: ");
+                                        int numConce = scMain.nextInt(); 
+                                        if (numConce < 0 || numConce > concesionarias.size()) {
+                                            System.out.println("Opcion Invalida");
+                                        } else {
+                                            int precio = clientes.get(numCliente - 1).getOwnedVehiculos().get(numVenta - 1).getPrecio();
+                                            double saldo = clientes.get(numCliente - 1).getSaldo();
+                                            concesionarias.get(numConce).setSaldo(saldo - precio);
+                                            clientes.get(numCliente - 1).setSaldo(saldo + precio);
+                                        }
+                                    }
+                                }
+                            } else if (opcionCompra == 3) {
+                                System.out.println("Saliendo...");
+                            } else {
+                                System.out.println("Opcion Invalida");
+                            }
+                        } while (opcionCompra != 3);
+                    }
                     break;
                 case 5:
                     System.out.println("Cerrando el sistema...");
