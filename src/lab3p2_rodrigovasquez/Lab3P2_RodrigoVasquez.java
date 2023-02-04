@@ -29,7 +29,7 @@ public class Lab3P2_RodrigoVasquez {
             opcion = scMain.nextInt();
             switch (opcion) {
                 case 1:
-                    
+                    crudConce(concesionarias);
                     break;
                 case 2:
                     crudCliente(clientes);
@@ -146,6 +146,8 @@ public class Lab3P2_RodrigoVasquez {
                                 case 2:
                                     break;
                                 case 3:
+                                    
+                                    
                                     break;
                                 case 4:
                                     System.out.println("Saliendo...");
@@ -169,7 +171,77 @@ public class Lab3P2_RodrigoVasquez {
         } while (opcion != 5);
     }
     
-    
+    public static Concesionaria crudConce(ArrayList<Concesionaria> concesionarias) {
+        Scanner scConce = new Scanner(System.in);
+        int opcion;
+        do {
+            System.out.println("-------------------------------------");
+            System.out.println("    < C O N C E S I O N A R I A >");
+            System.out.println("-------------------------------------");
+            System.out.print("""
+                             [1] Agregar
+                             [2] Modificar
+                             [3] Eliminar
+                             [4] Salir
+                             """);
+            System.out.println("-------------------------------------");
+            System.out.print("Ingrese la accion a realizar: ");
+            opcion = scConce.nextInt(); 
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese el nombre de la concesionaria: ");
+                    String name = scConce.nextLine();
+                    name = scConce.nextLine();
+                    System.out.print("Ingrese la dirrecion de la concesionaria: ");
+                    String dire = scConce.nextLine();
+                    double saldo = (Math.random() * (100000 - 30000)) + 1;
+                    System.out.println("Su saldo es de: " + saldo);
+                    concesionarias.add(new Concesionaria(name, dire, concesionarias.size()+1, saldo));
+                    System.out.println("Se ha añadido la concesionaria");
+                    break;
+                case 2:
+                    int numMod = 1;
+                    for (Concesionaria concesionaria : concesionarias) {
+                        System.out.println("#" + numMod + ": " + concesionaria);
+                        numMod++;
+                    }
+                    System.out.print("Eliga que concesionaria desea modificar: ");
+                    int numConce = scConce.nextInt();
+                    if (numConce < 0 || numConce > concesionarias.size()) {
+                        System.out.println("Opcion Invalida");
+                    } else {
+                        System.out.print("Ingrese la nueva direccion: ");
+                        String newDire = scConce.nextLine();
+                        newDire = scConce.nextLine();
+                        concesionarias.get(numConce-1).setDireccion(newDire);
+                        System.out.println("Se ha cambiado la dirrecion");
+                    }
+                    break;
+                case 3: 
+                    int numMElim = 1;
+                    for (Concesionaria concesionaria : concesionarias) {
+                        System.out.println("#" + numMElim + ": " + concesionaria);
+                        numMElim++;
+                    }
+                    System.out.print("Eliga que concesionaria desea eliminar: ");
+                    int num = scConce.nextInt();
+                    if (num < 0 || num > concesionarias.size()) {
+                        System.out.println("Opcion Invalida");
+                    } else {
+                        concesionarias.remove(num-1);
+                        System.out.println("Se ha eliminado concesionaria");
+                    }
+                    break; 
+                case 4: 
+                    System.out.println("Saliendo...");
+                    break;
+                default: 
+                    System.out.println("Opcion Invalida");
+                    break;
+            }
+        } while (opcion != 4); 
+        return concesionarias;
+    }
     
     public static ArrayList crudCliente(ArrayList<Cliente> clientes) {
         Scanner scClient = new Scanner(System.in);
